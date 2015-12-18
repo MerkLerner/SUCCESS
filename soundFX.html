@@ -1,0 +1,91 @@
+<DOCTYPE HTML>
+<html>
+<head>
+	<link rel='stylesheet' href='soundFX.css'>
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Calligraffitti" />
+</head>
+<body>
+  <div id="upper-div">
+  	<button onclick="showDivs();">Show/Hide divs</button>
+  </div>
+  <div id="app-container">
+    <h1>ARE YOU READY</h1>
+    <h2>for</h2>
+    <p id="success">SUCCESS?</p>
+    <h3>Here's your chance!</h3>
+
+    <div id="buttons-container">
+    	<div class="button-box">
+    		<button id="btn-1" onclick="success.play();">Press for success!</button>
+    		<p id="you-did-it"></p>
+    	</div>
+    </div>    
+  </div>
+
+<!-- scripts-->
+    <!-- j'queree -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- divs: hide/show -->
+    <script> 
+	    var divsOn = false;
+	    function showDivs() {
+	    	if (divsOn){
+	            $("#upper-div").css('background-color', 'white');
+	            $("#app-container").css('background-color', 'white');
+	            $("#buttons-container").css('background-color', 'white');
+	            $(".button-box").css('background-color', 'white');
+	            divsOn = false;	
+	    	} else {
+	    		$("#upper-div").css('background-color', 'red');	
+	    		$("#app-container").css('background-color', 'purple');
+	    		$("#buttons-container").css('background-color', 'cyan');
+	    		$(".button-box").css('background-color', '#800020');
+	    		divsOn = true;
+	    	}
+	    }
+
+
+    </script>
+	<!-- audio  -->
+    <script>
+        var success = new Audio("success.wav");
+    </script>
+	<!-- Text animation -->
+    <script type="text/javascript">
+    $(document).ready( function () {
+		//"are you ready"
+		$("h1").css('display', 'inherit');
+		setTimeout( function () {
+			// "for"
+			$("h1").css('display', 'none');
+			$("h2").css('display', 'inherit');
+			setTimeout( function () {
+    			//"success?"
+                $("h2").css('display', 'none');
+    			$("#success").css('display', 'inherit');
+    			setTimeout(function() {
+    		        //"here's your chance!"
+    		        $("#success").css('display', 'none');
+    			    $("h3").css('display', 'inherit');
+    			    setTimeout(function () {
+    			    	//button appears
+    			    	$("h3").css('display', 'none');
+    			    	$("#btn-1").css('display', 'inline');
+    			    }, 2000)
+    			},2000)   
+			}, 1700);
+		}, 2000)
+
+    	$("#btn-1").click(function (){
+    		$("#btn-1").css('display', 'none');
+    		setTimeout(function() {$("#buttons-container").append("<p>Wow. How does it feel?</p>");}, 2000)
+    	
+    	})	
+    		
+    	});
+    </script>
+
+
+</body>
+</html>
